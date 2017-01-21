@@ -16,3 +16,4 @@ class MemberInfo(models.Model):
     feet = models.IntegerField(default=5)
     inches = models.IntegerField(default=11)
     weight = models.IntegerField(default=160)
+    owner = models.ForeignKey('auth.User', related_name='memberinfo')
