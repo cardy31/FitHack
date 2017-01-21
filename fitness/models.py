@@ -9,7 +9,7 @@ class Food(models.Model):
     # The member that ate the food
     owner = models.ForeignKey('auth.User', related_name='foods')
 
-
+#Comment to commit...
 class MemberInfo(models.Model):
     age = models.IntegerField(default=18)
     feet = models.IntegerField(default=5)
