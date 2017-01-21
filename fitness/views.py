@@ -21,8 +21,8 @@ class UserDetail(generics.RetrieveAPIView):
 
 
 class FoodList(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
+               mixins.CreateModelMixin,
+               generics.GenericAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
     permission_classes = permissions.IsAuthenticated
@@ -38,9 +38,9 @@ class FoodList(mixins.ListModelMixin,
 
 
 class FoodDetail(mixins.RetrieveModelMixin,
-                mixins.UpdateModelMixin,
-                mixins.DestroyModelMixin,
-                generics.GenericAPIView):
+                 mixins.UpdateModelMixin,
+                 mixins.DestroyModelMixin,
+                 generics.GenericAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
     permission_classes = permissions.IsAuthenticated
@@ -53,3 +53,47 @@ class FoodDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+class MemberInfoList(mixins.ListModelMixin,
+                     mixins.CreateModelMixin,
+                     generics.GenericAPIView):
+    queryset = MemberInfo.objects.all()
+    serializer_class = MemberInfoSerializer
+    permission_classes = permissions.IsAuthenticated
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class MemberInfoDetail(mixins.RetrieveModelMixin,
+                       mixins.UpdateModelMixin,
+                       mixins.DestroyModelMixin,
+                       generics.GenericAPIView):
+    queryset = MemberInfo.objects.all()
+    serializer_class = MemberInfoSerializer
+    permission_classes = permissions.IsAuthenticated
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'foods': reverse('food-list', request=request, format=format),
+        'memberinfo': reverse('memberinfo-list', request=request, format=format),
+    })

@@ -24,9 +24,10 @@ class MemberInfoSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     # Will be a list of all the foods a member has eaten
     foods = serializers.HyperlinkedRelatedField(many=True, view_name='food-detail', read_only=True)
+    memberinfo = serializers.HyperlinkedRelatedField(many=True, view_name='memberinfo-detail', read_only=True)
 
     class Meta:
         model = User
-        fields = ('url', 'id', 'username', 'foods')
+        fields = ('url', 'id', 'username', 'foods', 'memberinfo')
 
 
