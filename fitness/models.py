@@ -11,9 +11,8 @@ class Food(models.Model):
 
 
 class MemberInfo(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE, default=1, related_name='user')
     age = models.IntegerField(default=18)
     feet = models.IntegerField(default=5)
     inches = models.IntegerField(default=11)
     weight = models.IntegerField(default=160)
-    owner = models.ForeignKey('auth.User', related_name='memberinfo')
+    owner = models.ForeignKey('auth.User', related_name='memberinfo', default=1)
