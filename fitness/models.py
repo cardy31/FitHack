@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Food(models.Model):
@@ -10,6 +11,7 @@ class Food(models.Model):
 
 
 class MemberInfo(models.Model):
+    # user = models.OneToOneField(User, on_delete=models.CASCADE, default=1, related_name='user')
     age = models.IntegerField(default=18)
     feet = models.IntegerField(default=5)
     inches = models.IntegerField(default=11)
