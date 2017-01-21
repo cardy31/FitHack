@@ -2,7 +2,6 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 
-# Create your models here.
 class Member(models.Model):
     name = models.CharField(max_length=30)
     email = models.EmailField
@@ -13,7 +12,10 @@ class Member(models.Model):
     height = models.IntegerField
     weight = models.IntegerField
 
+
 class Food(models.Model):
     name = models.CharField(max_length=50)
     calories = models.IntegerField()
-    datetime = models.DateTimeField()
+    datetime = models.DateTimeField(auto_now=True)
+    # The member that ate the food
+    owner = models.ForeignKey('auth.User', related_name='foods')
