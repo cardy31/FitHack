@@ -1,26 +1,28 @@
 from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from fitness import views
-from django.views.generic.base import RedirectView
 
-# app_name = 'fields'
+# app_name = 'refs'
 urlpatterns = format_suffix_patterns([
     url(r'^$', views.api_root),
-    url(r'^fields/$',
-        views.FieldList.as_view(),
-        name='field-list'),
-    url(r'^fields/(?P<pk>[0-9]+)/$',
-        views.FieldDetail.as_view(),
-        name='field-detail'),
+    url(r'^food/$',
+        views.FoodList.as_view(),
+        name='refs-list'),
+    url(r'^food/(?P<pk>[0-9]+)/$',
+        views.FoodDetail.as_view(),
+        name='ref-detail'),
+    url(r'^memberinfo/$',
+        views.MemberInfoList.as_view(),
+        name='memberinfo-list'),
+    url(r'^memberinfo/(?P<pk>[0-9]+)/',
+        views.MemberInfoDetail.as_view(),
+        name='memberinfo-detail'),
     url(r'^users/$',
         views.UserList.as_view(),
         name='user-list'),
     url(r'^users/(?P<pk>[0-9]+)/$',
         views.UserDetail.as_view(),
         name='user-detail'),
-    url(r'^accounts/profile/$',
-        RedirectView.as_view(url='/', permanent=False),
-        name='login'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ])
 
