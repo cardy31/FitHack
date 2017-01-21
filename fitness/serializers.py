@@ -17,7 +17,7 @@ class MemberInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MemberInfo
-        fields = ('id', 'age', 'height', 'weight', 'owner')
+        fields = ('id', 'age', 'feet', 'inches', 'weight', 'owner')
 
 
 # Implements a special user class that has built-in login/out abilities

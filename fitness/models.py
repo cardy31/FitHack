@@ -10,6 +10,7 @@ class Food(models.Model):
 
 
 class MemberInfo(models.Model):
-    age = models.IntegerField
-    height = models.IntegerField
-    weight = models.IntegerField
+    age = models.IntegerField(default=18)
+    feet = models.IntegerField(default=5)
+    inches = models.IntegerField(default=11)
+    weight = models.IntegerField(default=160)
