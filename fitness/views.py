@@ -25,7 +25,7 @@ class FoodList(mixins.ListModelMixin,
                generics.GenericAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
-    permission_classes = permissions.IsAuthenticated
+    # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -43,7 +43,7 @@ class FoodDetail(mixins.RetrieveModelMixin,
                  generics.GenericAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
-    permission_classes = permissions.IsAuthenticated
+    # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -60,7 +60,7 @@ class MemberInfoList(mixins.ListModelMixin,
                      generics.GenericAPIView):
     queryset = MemberInfo.objects.all()
     serializer_class = MemberInfoSerializer
-    permission_classes = permissions.IsAuthenticated
+    # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -78,7 +78,7 @@ class MemberInfoDetail(mixins.RetrieveModelMixin,
                        generics.GenericAPIView):
     queryset = MemberInfo.objects.all()
     serializer_class = MemberInfoSerializer
-    permission_classes = permissions.IsAuthenticated
+    # permission_classes = permissions.IsAuthenticated
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
