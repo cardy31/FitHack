@@ -25,7 +25,7 @@ SECRET_KEY = 'jm52*9qwca+*0*a(^muf2jbtg(n0(=9w*^-84yh@lmmq+owbs7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -119,7 +119,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'http://www.trackyoself.org/static/'
+STATIC_ROOT = '/var/www/trackyoself.org/static/'
+MEDIA_URL = 'http://www.trackyoself.org/media/'
+MEDIA_ROOT = '/var/www/trackyoself.org/media/'
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',),

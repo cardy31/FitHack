@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from fitness.models import Food, HistoricWeight, MemberInfo
+from fitness.models import Food, MemberInfo
 
 
 class FoodSerializer(serializers.ModelSerializer):
@@ -11,14 +11,6 @@ class FoodSerializer(serializers.ModelSerializer):
         model = Food
         fields = ('id', 'name', 'brandName', 'servingQuantity', 'servingUnit', 'calories', 'totalFats', 'satFats',
                   'cholesterol', 'sodium', 'carbs', 'sugar', 'protein', 'datetime', 'thumb', 'highres', 'owner')
-
-
-class HistoricWeightSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-
-    class Meta:
-        model = HistoricWeight
-        fields = ('id', 'weight', 'datetime', 'owner')
 
 
 class MemberInfoSerializer(serializers.ModelSerializer):
@@ -33,7 +25,6 @@ class MemberInfoSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     # Will be a list of all the foods a member has eaten
     foods = serializers.HyperlinkedRelatedField(many=True, view_name='food-detail', read_only=True)
-    historicweight = serializers.HyperlinkedRelatedField(many=True, view_name='historicweight-detail', read_only=True)
     memberinfo = serializers.HyperlinkedRelatedField(many=True, view_name='memberinfo-detail', read_only=True)
 
     class Meta:

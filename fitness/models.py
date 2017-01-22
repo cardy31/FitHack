@@ -22,12 +22,6 @@ class Food(models.Model):
     owner = models.ForeignKey('auth.User', related_name='foods')
 
 
-class HistoricWeight(models.Model):
-    weight = models.IntegerField(default=160)
-    datetime = models.DateTimeField(auto_now=True)
-    owner = models.ForeignKey('auth.User', related_name='historicweightinfo', default=1)
-
-
 class MemberInfo(models.Model):
     age = models.IntegerField(default=18)
     feet = models.IntegerField(default=5)
